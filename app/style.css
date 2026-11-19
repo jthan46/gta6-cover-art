@@ -1,0 +1,201 @@
+/* Leonida Cover Lab: a dark studio panel beside a glowing stage. Neon pink and sunset gold on deep
+   violet; everything is system fonts and flat colour, so the page paints instantly and offline. */
+
+:root {
+  --ink: #0a0512;
+  --panel: #150a26;
+  --panel-edge: #2c1650;
+  --text: #f4ecff;
+  --muted: #b7a6d9;
+  --pink: #ff2e88;
+  --gold: #ffb347;
+  --cyan: #2fd6f2;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--ink);
+  color: var(--text);
+  font: 15px/1.45 "Segoe UI", system-ui, sans-serif;
+}
+
+.app { display: flex; height: 100%; }
+
+/* The control panel */
+.panel {
+  width: 348px;
+  flex: 0 0 348px;
+  overflow-y: auto;
+  padding: 22px 22px 30px;
+  background: linear-gradient(180deg, #1a0b31 0%, var(--panel) 55%, #0e0620 100%);
+  border-right: 1px solid var(--panel-edge);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.brand h1 {
+  margin: 0;
+  font-family: "Arial Black", "Segoe UI", system-ui, sans-serif;
+  font-size: 27px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.brand h1 span {
+  background: linear-gradient(92deg, var(--gold), var(--pink) 70%, #b829dd);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.tagline { margin: 6px 0 0; color: var(--muted); font-size: 13.5px; }
+
+.group { border-top: 1px solid var(--panel-edge); padding-top: 14px; }
+.group h2 {
+  margin: 0 0 10px;
+  font-size: 12.5px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* Photo drop zone and samples */
+.drop {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: center;
+  text-align: center;
+  padding: 18px 12px;
+  border: 2px dashed #4a2a7a;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.drop:hover, .drop.over { border-color: var(--pink); background: rgba(255, 46, 136, 0.08); }
+.drop-big { font-weight: 700; font-size: 16px; }
+.drop-small { color: var(--muted); font-size: 12.5px; }
+
+.samples { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 10px; }
+.samples-label { width: 100%; color: var(--muted); font-size: 12.5px; }
+.chip {
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  background: #241145;
+  border: 1px solid var(--panel-edge);
+  border-radius: 999px;
+  padding: 5px 12px;
+  cursor: pointer;
+}
+.chip:hover { border-color: var(--cyan); color: var(--cyan); }
+
+.thumbs { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+.thumb {
+  padding: 0;
+  border: 2px solid var(--panel-edge);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  background: none;
+  line-height: 0;
+}
+.thumb:hover { border-color: var(--pink); }
+.thumb img { width: 54px; height: 54px; object-fit: cover; }
+
+/* Segmented choices, rows, fields */
+.seg { display: flex; gap: 6px; margin-bottom: 10px; }
+.seg button {
+  flex: 1;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 7px 4px;
+  color: var(--muted);
+  background: #1d0d38;
+  border: 1px solid var(--panel-edge);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.seg button.on {
+  color: #fff;
+  border-color: var(--pink);
+  background: linear-gradient(120deg, rgba(255, 46, 136, 0.35), rgba(184, 41, 221, 0.35));
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 8px;
+  font-weight: 600;
+  font-size: 13.5px;
+}
+.row.col { flex-direction: column; align-items: stretch; gap: 5px; }
+.row select, .row input[type="text"], .row textarea {
+  font: inherit;
+  font-weight: 400;
+  color: var(--text);
+  background: #0d0620;
+  border: 1px solid var(--panel-edge);
+  border-radius: 7px;
+  padding: 6px 8px;
+  min-width: 0;
+}
+.row select { max-width: 170px; }
+.row input[type="text"] { max-width: 170px; }
+.row textarea { resize: vertical; text-transform: uppercase; }
+.row input[type="range"] { flex: 1; accent-color: var(--pink); min-width: 0; }
+
+.check { display: flex; gap: 8px; align-items: center; margin-top: 8px; font-weight: 600; font-size: 13.5px; }
+.check input { accent-color: var(--pink); width: 16px; height: 16px; }
+
+.hint { color: var(--muted); font-size: 12.5px; margin: 8px 0 0; }
+
+/* Export */
+.export {
+  width: 100%;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  color: #fff;
+  padding: 12px;
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  background: linear-gradient(92deg, #ff7a4d, var(--pink) 60%, #b829dd);
+  box-shadow: 0 6px 22px rgba(255, 46, 136, 0.35);
+}
+.export:hover { filter: brightness(1.1); }
+.status { min-height: 1.2em; color: var(--cyan); font-size: 13px; margin: 10px 0 0; }
+
+/* The stage */
+.stage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 26px;
+  background:
+    radial-gradient(60% 50% at 50% 42%, rgba(255, 46, 136, 0.14), rgba(10, 5, 18, 0) 70%),
+    radial-gradient(40% 32% at 78% 12%, rgba(255, 179, 71, 0.1), rgba(10, 5, 18, 0) 70%),
+    var(--ink);
+}
+#cover-canvas {
+  max-width: 100%;
+  max-height: 100%;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  cursor: grab;
+  touch-action: none;
+}
+#cover-canvas:active { cursor: grabbing; }
+
+/* ?shot=cover: the cover alone, full-bleed. */
+body.shot-cover .panel { display: none; }
+body.shot-cover .stage { padding: 0; }
+body.shot-cover #cover-canvas { width: 100vw; height: 100vh; max-width: none; max-height: none; box-shadow: none; cursor: default; }

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leonida Cover Lab — GTA-style cover art from your photos</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="app" id="app">
+  <aside class="panel" id="controls">
+    <header class="brand">
+      <h1 id="app-title">Leonida <span>Cover Lab</span></h1>
+      <p class="tagline">Your photo and a caption, made into a Vice City cover. Offline, instant, and the photos never leave this machine.</p>
+    </header>
+
+    <section class="group" id="group-photo">
+      <h2>1 · Photo</h2>
+      <label class="drop" id="drop-zone">
+        <input id="photo-input" type="file" accept="image/*" multiple hidden>
+        <span class="drop-big">Drop photos here</span>
+        <span class="drop-small">or click to browse your machine</span>
+      </label>
+      <div class="samples" id="sample-row">
+        <span class="samples-label">No photo handy? Start with a sample:</span>
+        <button type="button" class="chip" data-sample="boulevard">Boulevard</button>
+        <button type="button" class="chip" data-sample="pier">Pier</button>
+        <button type="button" class="chip" data-sample="beach">Beach</button>
+      </div>
+      <div class="thumbs" id="photo-thumbs"></div>
+    </section>
+
+    <section class="group" id="group-layout">
+      <h2>2 · Layout &amp; panels</h2>
+      <div class="seg" id="layout-seg">
+        <button type="button" data-layout="hero" class="on">Hero Grid</button>
+        <button type="button" data-layout="duo">Duo Split</button>
+        <button type="button" data-layout="trio">Triple Strip</button>
+      </div>
+      <label class="row">Panel
+        <select id="panel-select"></select>
+      </label>
+      <label class="row">Shows
+        <select id="panel-photo"></select>
+      </label>
+      <label class="row">Zoom
+        <input id="panel-zoom" type="range" min="1" max="3" step="0.01" value="1">
+      </label>
+      <p class="hint">Or work the cover itself: drag a panel to reframe it, scroll over it to zoom.</p>
+    </section>
+
+    <section class="group" id="group-grade">
+      <h2>3 · Vice City grade</h2>
+      <label class="row">Neon sunset
+        <input id="grade-range" type="range" min="0" max="1" step="0.01" value="0.85">
+      </label>
+      <label class="check"><input id="halftone-check" type="checkbox"> Halftone ink</label>
+      <label class="check"><input id="vignette-check" type="checkbox" checked> Vignette</label>
+    </section>
+
+    <section class="group" id="group-lettering">
+      <h2>4 · Lettering</h2>
+      <label class="row col">Title
+        <textarea id="title-input" rows="2">GRAND THEFT
+AUTO</textarea>
+      </label>
+      <label class="row">Numeral
+        <input id="numeral-input" type="text" maxlength="4" value="VI">
+      </label>
+      <label class="row col">Caption
+        <input id="caption-input" type="text" maxlength="60" value="Sunset Heist">
+      </label>
+    </section>
+
+    <section class="group" id="group-export">
+      <h2>5 · Export</h2>
+      <div class="seg" id="size-seg">
+        <button type="button" data-size="square" class="on">1080 × 1080</button>
+        <button type="button" data-size="portrait">1080 × 1350</button>
+        <button type="button" data-size="wide">1600 × 900</button>
+      </div>
+      <button id="export-btn" class="export" type="button">Download PNG</button>
+      <p id="status" class="status" role="status"></p>
+    </section>
+  </aside>
+
+  <main class="stage" id="stage">
+    <canvas id="cover-canvas" width="1080" height="1080" aria-label="Your cover, live preview"></canvas>
+  </main>
+</div>
+<script type="module" src="./src/editor.js"></script>
+</body>
+</html>
